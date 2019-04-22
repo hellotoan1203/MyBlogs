@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sensive Blog - Home</title>
+  <link rel="icon" type="image/png" href="/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="/vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="/vendors/linericon/style.css">
+  <link rel="stylesheet" href="/vendors/owl-carousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <!--================Header Menu Area =================-->
+  <%-include('header')%>
+  <!--================Header Menu Area =================-->
+
+  <main class="site-main">
+    <!--================Hero Banner start =================-->
+    <%-include('banner')%>
+    <!--================Hero Banner end =================-->
+
+    <!--================ Start Blog Post Area =================-->
+    <section class="blog-post-area section-margin mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <% blogs.forEach((blog)=>{%>
+            <div class="single-recent-blog-post">
+              <div class="thumb">
+                <%if (blog.img != null&& blog.img !=""){%>
+                <img class="img-fluid" src="<%=blog.img%>" alt="">
+                <%} else {%>
+                <img class="img-fluid" src="/img/blog/blog3.png" alt="">
+                <%}%>
+                <ul class="thumb-info">
+                  <li><a href="#"><i class="ti-user"></i><%=blog.author%></a></li>
+                <li><a href="#"><i class="ti-notepad"></i><%=blog.date.toLocaleDateString("en-US")%></a></li>
+                <!-- <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li> -->
+                </ul>
+              </div>
+              <div class="details mt-20">
+                <a href="/detail/<%=blog._id%>">
+                  <h3><%=blog.title%></h3>
+                </a>
+                <p class="tag-list-inline">Category: <a href="#"><%=blog.category%></a></p>
+                <p><%=blog.description%></p>
+                <a class="button" href="/detail/<%=blog._id%>">Read More <i class="ti-arrow-right"></i></a>
+              </div>
+            </div>
+            <%})%>
+
+
+
+            <div class="row">
+              <div class="col-lg-12">
+                <nav class="blog-pagination justify-content-center d-flex">
+                  <ul class="pagination">
+                    <li class="page-item">
+
+                      <a <%if(page == 1){%> <%}%> <%if (page !=1){ var pre = page-1%>
+                        href="/category/<%=cateID%>?page=<%=pre%>" <%}%> class="page-link" aria-label="Previous">
+                                  <span aria-hidden="true">
+                                      <i class="ti-angle-left"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li class="page-item"><a href="" class="page-link"><%= page%></a> </li> <li
+                        class="page-item">
+                        <a <%if((page*pageSize) >= numberofSize){%>
+                          <%}%> <%if ((page * pageSize) < numberofSize){ next = parseInt(page)+1%>
+                          href="/category/<%=cateID%>/?page=<%=next%>" <%}%>  class="page-link" aria-label="Next">
+                                  <span aria-hidden="true">
+                                      <i class="ti-angle-right"></i>
+                                  </span>
+                              </a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Blog Post Siddebar -->
+          <div class="col-lg-4 sidebar-widgets">
+              <div class="widget-wrap">
+                  <%-include('sidebar')%> </div> </div> <!-- End Blog Post Siddebar -->
+
+    </section>
+    <!--================ End Blog Post Area =================-->
+  </main>
+
+  <!--================ Start Footer Area =================-->
+  <%- include('footer')%>
+  <!--================ End Footer Area =================-->
+
+  <script src="/vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/js/mail-script.js"></script>
+  <script src="/js/main.js"></script>
+  <script type="text/javascript" src="/headerpublic.js"></script>
+</body>
+
+</html>
