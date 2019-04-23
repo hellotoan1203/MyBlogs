@@ -3,6 +3,7 @@ const router = express.Router();
 const CategoryModel = require('../../model/categoryModel');
 const BlogModel = require('../../model/blogModel');
 const Constant = require('../../constant')
+const EmailModel = require('../../model/emailModel');
 
 router.get('/', async (req, res) => {
     var page = req.query.page;
@@ -101,6 +102,20 @@ router.get('/detail/:id', async (req, res) => {
         res.render('public/error')
     }
 })
+
+router.post('/emailregister', async(req,res)=>{
+    var email = req.body.email;
+    var registedEmail = await EmailModel.findOne({"email": email});
+    if(registedEmail == null || registedEmail == undefined){
+        await EmailModel.create({"email": email});
+        let message = Constant.EMAIL_REGISTER_SUCCESS;
+        res.render("public/email",{message: message});
+    }else{
+        let message = Constant.EMAIL_REGISTER_FAIL;
+        res.render("public/email",{message: message});
+    }
+})
+
 
 
 module.exports = router;

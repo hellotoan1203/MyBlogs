@@ -3,6 +3,7 @@ const router = express.Router();
 const authen = require('../../midleware/authenMidleware');
 const CategoryModel = require('../../model/categoryModel');
 const BlogModel = require('../../model/blogModel');
+const Constant = require('../../constant')
 
 
 router.use(authen.authenticated);
@@ -47,10 +48,26 @@ router.get('/edit', async (req, res) => {
 
 
 router.get('/list', async (req, res) => {
-    var listBlog = await BlogModel.find();
+    var page = req.query.page;
+    var pageSize = Constant.PAGE_SIZE;
+    if (page == "" || page == null || page == undefined || page ==0) {
+        page = Constant.DEFAULT_PAGE;
+    }
+    
+    var blogs = null;
+    var allBlogs = null;
+    var allBlogs = await BlogModel.find();
+    var allPages = (allBlogs.length % pageSize == 0) ? (allBlogs.length / pageSize) : Math.round(allBlogs.length / pageSize)+1;
+    if(allPages < page){
+        page = 1
+    }
+    blogs = allBlogs.slice(parseInt(page - 1) * pageSize, parseInt(page) * pageSize);
     res.render('admin/ListBlogs', {
-        list: listBlog,
-        user: req.user.username
+        list: blogs,
+        user: req.user.username, 
+        numberofSize: allBlogs.length,
+        page: page,
+        pageSize: pageSize
     })
 
 })
