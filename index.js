@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const blogRouter = require('./router/admin/blogRouter')
 const publicRouter = require('./router/public/publicRouter')
 
+const port = process.env.PORT || 3000
 
 app.set('views','./views');
 app.set('view engine','ejs');
@@ -59,6 +60,6 @@ app.use('/admin/blog', blogRouter);
 app.use('/', publicRouter )
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('app running');
 })

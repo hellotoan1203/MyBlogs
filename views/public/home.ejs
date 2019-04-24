@@ -25,11 +25,11 @@
 
   <main class="site-main">
     <!--================Hero Banner start =================-->
-      <%-include('banner')%>
+    <%-include('banner')%>
     <!--================Hero Banner end =================-->
 
     <!--================ Blog slider start =================-->
-  
+
     <!--================ Start Blog Post Area =================-->
     <section class="blog-post-area section-margin mt-4">
       <div class="container">
@@ -94,7 +94,8 @@
           <!-- Start Blog Post Siddebar -->
           <div class="col-lg-4 sidebar-widgets">
               <div class="widget-wrap">
-                  <%-include('sidebar')%> <div class="single-sidebar-widget popular-post-widget">
+                  <%-include('sidebar')%> 
+                  <div class="single-sidebar-widget popular-post-widget">
                           <h4 class="single-sidebar-widget__title">Newest Post</h4>
                           <div class="popular-post-list">
                             <% if(newestBlogs) {%>
@@ -107,9 +108,8 @@
                                 <img class="card-img rounded-0" src="/img/blog/blog3.png" alt="">
                                 <%}%>
                             <ul class="thumb-info">
-                              <li><a href="#"><%=blog.author%>
-                        </a></li>
-                  </ul>
+                              <li><a href="#"><%=blog.author%></a></li>
+                            </ul>
               </div>
               <div class="details mt-20">
                 <a href="/detail/<%=blog._id%>">

@@ -44,7 +44,6 @@ router.get('/category/:id', async (req, res) => {
     if (page == "" || page == null || page == undefined) {
         page = Constant.DEFAULT_PAGE;
     }
-    var search = req.query.search;
     var pageSize = Constant.PAGE_SIZE;
     var blogs = null;
     var allBlogs = null;
@@ -87,6 +86,12 @@ router.get('/header', async (req, res) => {
     var series = await BlogModel.aggregate([{ $group: { _id: '$series', "count": { "$sum": 1 } } }, { $sort: { "count": -1 } }]).limit(10);
     res.status(200);
     res.json({ cates: cates, series: series })
+})
+
+router.get('/banner', async(req,res)=>{
+    var listquotes = Constant.QUOTE;
+    var id = Math.floor(Math.random()*6);
+    res.json({ quote: listquotes[id]});
 })
 
 router.get('/detail/:id', async (req, res) => {
