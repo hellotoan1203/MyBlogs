@@ -46,6 +46,7 @@
                 <ul class="thumb-info">
                   <li><a href="#"><i class="ti-user"></i><%=blog.author%></a></li>
                 <li><a href="#"><i class="ti-notepad"></i><%=blog.date.toLocaleDateString("en-US")%></a></li>
+                <li><a href="#"><i class="ti-comment-alt"></i><%=blog.meta.fav%></a></li>
                 <!-- <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li> -->
                 </ul>
               </div>
@@ -94,8 +95,7 @@
           <!-- Start Blog Post Siddebar -->
           <div class="col-lg-4 sidebar-widgets">
               <div class="widget-wrap">
-                  <%-include('sidebar')%> 
-                  <div class="single-sidebar-widget popular-post-widget">
+                  <%-include('sidebar')%> <div class="single-sidebar-widget popular-post-widget">
                           <h4 class="single-sidebar-widget__title">Newest Post</h4>
                           <div class="popular-post-list">
                             <% if(newestBlogs) {%>
@@ -108,8 +108,9 @@
                                 <img class="card-img rounded-0" src="/img/blog/blog3.png" alt="">
                                 <%}%>
                             <ul class="thumb-info">
-                              <li><a href="#"><%=blog.author%></a></li>
-                            </ul>
+                              <li><a href="#"><%=blog.author%>
+                        </a></li>
+                  </ul>
               </div>
               <div class="details mt-20">
                 <a href="/detail/<%=blog._id%>">
