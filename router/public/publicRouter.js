@@ -98,7 +98,7 @@ router.get('/detail/:id', async (req, res) => {
     var id = req.params.id;
     var blog = await BlogModel.findById(id);
     if (blog != null) {
-        await BlogModel.findOneAndUpdate(id, {$inc: {"meta.fav": 1}});
+        await BlogModel.updateOne({_id: id}, {'$inc': {'meta.fav': 1}});
         res.render('public/detail', {
             blog: blog
         })
