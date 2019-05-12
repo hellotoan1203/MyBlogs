@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%=blog.title%></title>
   <link rel="icon" type="image/png" href="/assets/img/favicon.ico">
-
   <link rel="stylesheet" href="/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="/vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="/vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="/vendors/linericon/style.css">
   <link rel="stylesheet" href="/vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
-
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+  <!--Add Facebook javascript SDK to page-->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=303020477279497&autoLogAppEvents=1"></script>
+
   <!--================Header Menu Area =================-->
   <%-include('header')%>
   <!--================Header Menu Area =================-->
@@ -87,7 +88,7 @@
               </div>
             </div> -->
             <div class="comments-area">
-
+                <div class="fb-comments" data-href="https://itcoffeevn.com/detail/<%=blog._id%>" data-width="" data-numposts="10"></div>
             </div>
 
           </div>

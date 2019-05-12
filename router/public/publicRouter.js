@@ -19,11 +19,11 @@ router.get('/', async (req, res) => {
     if (search != null) {
         // blogs = await BlogModel.find({ title : { $regex :  search, $options : 'i' } } ).skip((parseInt(page)-1)* pageSize).limit(pageSize);
         allBlogs = await BlogModel.find({ title: { $regex: search, $options: 'i' } });
-        blogs = allBlogs.slice(parseInt(page - 1) * pageSize, parseInt(page) * pageSize);
+        blogs = allBlogs.slice(parseInt(page - 1) * pageSize, parseInt(page) * pageSize).reverse();
     } else {
         // blogs = await BlogModel.find().skip((parseInt(page)-1)* pageSize).limit(pageSize);
         allBlogs = await BlogModel.find();
-        blogs = allBlogs.slice(parseInt(page - 1) * pageSize, parseInt(page) * pageSize);
+        blogs = allBlogs.slice(parseInt(page - 1) * pageSize, parseInt(page) * pageSize).reverse();
     }
     //get newest blogs
     var nblogs = await BlogModel.find();
